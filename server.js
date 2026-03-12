@@ -1,6 +1,5 @@
 // testing api
 const express = require('express');
-console.log("THIS IS THE NEW SERVER FILE");
 const cors = require('cors');
 const pool = require('./db');
 require('dotenv').config();
@@ -19,12 +18,10 @@ app.get('/', (req, res) => {
 
 // Get UV index by postcode
 app.get('/api/uv/:postcode', async (req, res) => {
-
   const { postcode } = req.params;
 
   try {
-
-    // search latitude and longitude from table location
+    // 1. search latitude and longitude from table location
     const locationResult = await pool.query(
       `
       SELECT latitude, longitude
@@ -42,14 +39,11 @@ app.get('/api/uv/:postcode', async (req, res) => {
     }
 
     const { latitude, longitude } = locationResult.rows[0];
+    const lat = Number(latitude);
+    const lon = Number(longitude);
 
-    // return result
-    res.json({
-      postcode,
-      latitude,
-      longitude
-    });
-     const apiKey = process.env.OPENWEATHER_API_KEY;
+    // 2. call OpenWeather API
+    const apiKey = process.env.OPENWEATHER_API_KEY;
 
     const url =
       `https://api.openweathermap.org/data/3.0/onecall` +
@@ -72,7 +66,7 @@ app.get('/api/uv/:postcode', async (req, res) => {
     const uvIndex = data.current?.uvi ?? null;
 
     // 4. return result
-    res.json({
+    return res.json({
       postcode,
       latitude: lat,
       longitude: lon,
@@ -80,20 +74,17 @@ app.get('/api/uv/:postcode', async (req, res) => {
     });
 
   } catch (error) {
-
     console.error(error);
 
-    res.status(500).json({
-      error: "server error"
+    return res.status(500).json({
+      error: error.message
     });
-
   }
-  
-
 });
 
-
-
+/*
+Start server
+*/
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
