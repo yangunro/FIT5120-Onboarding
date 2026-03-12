@@ -45,10 +45,39 @@ app.get('/api/uv/:postcode', async (req, res) => {
 
     // return result
     res.json({
-  postcode,
-  latitude: Number(latitude),
-  longitude: Number(longitude)
-});
+      postcode,
+      latitude,
+      longitude
+    });
+     const apiKey = process.env.OPENWEATHER_API_KEY;
+
+    const url =
+      `https://api.openweathermap.org/data/3.0/onecall` +
+      `?lat=${lat}` +
+      `&lon=${lon}` +
+      `&exclude=minutely,hourly,daily,alerts` +
+      `&appid=${apiKey}`;
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      return res.status(500).json({
+        error: "weather api error"
+      });
+    }
+
+    const data = await response.json();
+
+    // 3. get current.uvi
+    const uvIndex = data.current?.uvi ?? null;
+
+    // 4. return result
+    res.json({
+      postcode,
+      latitude: lat,
+      longitude: lon,
+      uv_index: uvIndex
+    });
 
   } catch (error) {
 
@@ -59,8 +88,11 @@ app.get('/api/uv/:postcode', async (req, res) => {
     });
 
   }
+  
 
 });
+
+
 
 const PORT = process.env.PORT || 3000;
 
