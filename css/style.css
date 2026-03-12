@@ -1,0 +1,282 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f5f5;
+  color: #132b5c;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px 50px;
+}
+
+.navbar {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.nav-links a.active {
+  color: #2563ff;
+}
+
+.demo-btn {
+  background: #132b5c;
+  color: white;
+  padding: 20px 28px;
+  border-radius: 16px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 34px;
+  align-items: center;
+  min-height: 460px;
+  margin-bottom: 34px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #2563ff;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.eyebrow-icon {
+  width: 18px;
+  height: 18px;
+  background: #2563ff;
+  border-radius: 4px;
+}
+
+.hero-title {
+  font-size: 68px;
+  font-weight: 800;
+  line-height: 0.95;
+  margin-bottom: 24px;
+}
+
+.hero-title span {
+  color: #8a8ea0;
+}
+
+.hero-text {
+  font-size: 20px;
+  color: #6d7386;
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+.hero-panel {
+  background: white;
+  border-radius: 28px;
+  padding: 26px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
+}
+
+.hero-panel h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.hero-note {
+  background: #f3f5fb;
+  border-radius: 22px;
+  padding: 20px;
+  color: #51627f;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 26px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card h3 {
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.big-number {
+  font-size: 54px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.stat-text {
+  color: #6d7386;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 26px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+}
+
+.chart-card h3 {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+.chart-box {
+  background: #f7f8fc;
+  border-radius: 22px;
+  padding: 18px;
+}
+
+.chart-label {
+  font-size: 14px;
+  color: #6d7386;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+canvas {
+  width: 100%;
+  height: 240px;
+  display: block;
+}
+
+.tips-card {
+  background: white;
+  border-radius: 26px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.tips-card h3 {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tip-item {
+  background: #fbfcff;
+  border: 1px solid #edf1f7;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.tip-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: #eef3ff;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tip-icon::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: #2563ff;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tip-text strong {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.tip-text span {
+  color: #6d7386;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+@media (max-width: 1100px) {
+  .hero,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: 54px;
+  }
+}
+
+@media (max-width: 760px) {
+  .navbar {
+    height: auto;
+    padding: 20px 0;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .hero-title {
+    font-size: 42px;
+  }
+
+  .hero-text {
+    font-size: 17px;
+  }
+
+  .big-number {
+    font-size: 42px;
+  }
+}
