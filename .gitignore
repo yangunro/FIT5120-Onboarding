@@ -10,6 +10,20 @@ lerna-debug.log*
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Runtime data
+# Mac
+.DS_Store
+
+# Python
+.venv/
+
+# Node
+node_modules/
+
+# Environment variables
+.env
+
+# Data files
+data_sunsafety/*.xlsx
 pids
 *.pid
 *.seed
